@@ -38,8 +38,6 @@ const MovieDetails = () => {
   }, [movieId, media_type]);
 
   useEffect(() => {
-    console.log("real");
-
     let mounted = true;
     if (!movieId || !media_type) return;
 
@@ -70,23 +68,29 @@ const MovieDetails = () => {
   return (
     <>
       <Header />
-      {/* Backdrop */}
-      {/* {getMovieDetails.backdrop_path !== "" && (
-        <section className="w-full min-h-fit">
-          <div className="container mx-auto">
-            <img
-              src={`https://image.tmdb.org/t/p/original/${getMovieDetails.backdrop_path}`}
-              alt={getMovieDetails.title}
-            />
-          </div>
-        </section>
-      )} */}
-      {/* Details */}
 
       {getMovieDetails === null ? (
         <ShowErrors message={displayText} />
       ) : (
         <>
+          {/* Backdrop */}
+          {getMovieDetails.backdrop_path && (
+            <section className="w-full min-h-fit">
+              <div className="container mx-auto rounded-2xl overflow-hidden">
+                <img
+                  title={`${
+                    getMovieDetails.title || getMovieDetails.name
+                  }'s Backdrop`}
+                  src={`https://image.tmdb.org/t/p/original/${getMovieDetails.backdrop_path}`}
+                  alt={getMovieDetails.title}
+                  loading="lazy"
+                />
+              </div>
+            </section>
+          )}
+
+          {/* Details */}
+
           <section className="py-12 px-6">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-[minmax(350px,auto)_1fr] gap-5">
               <div className="overflow-hidden rounded-2xl max-w-[350px] border-2 border-accent/20 ">

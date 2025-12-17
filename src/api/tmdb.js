@@ -48,7 +48,6 @@ async function fetchMovieDetails(
       options
     );
     const data = await res.json();
-    console.log(data);
 
     return data;
   } catch (error) {
@@ -89,7 +88,6 @@ async function fetchRelatedPosts(
       options
     );
     const data = await res.json();
-    console.log("related", data);
 
     return data.results;
   } catch (error) {
