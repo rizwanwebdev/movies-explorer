@@ -1,16 +1,16 @@
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ImageWithFallback } from "./ImageWithFallback";
+import ImageWithFallback from "../components/ImageWithFallback";
 const MovieCards = ({ currentMovies }) => {
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {currentMovies.map((item) => (
           <div key={`${item.media_type}-${item.id}`}>
-            <Link to={`/details?id=${item.movieId}`}>
+            <Link to={`/details?type=${item.media_type}&id=${item.id}`}>
               <div className="group relative block bg-secondary-bg rounded-xl overflow-hidden  shadow-lg hover:shadow-2xl  hover:scale-103 transition-all hover:shadow-primary/13 duration-300 cursor-pointer">
                 <ImageWithFallback
-                  poster={`https://image.tmdb.org/t/p/w342${item.poster_path}`}
+                  poster={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                   alt={item.media_type === "movie" ? item.title : item.name}
                 />
 

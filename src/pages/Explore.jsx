@@ -22,8 +22,10 @@ const Explore = () => {
       searchAll(initialSearch, setLoading, setResponceError).then((results) => {
         if (results) {
           const filtered = results.filter(
-            (item) => item.media_type !== "person"
+            (item) => item.media_type !== "person" && item.poster_path
           );
+          console.log(filtered);
+
           setMoviesData(filtered);
           setCurrentPage(1);
         }
@@ -55,7 +57,7 @@ const Explore = () => {
         <div className="container mx-auto">
           <div className=" flex flex-col justify-center items-center gap-3">
             <h2 className="text-center text-4xl md:text-5xl text-text font-bold">
-              Explore Movies
+              Explore Movies And Series
             </h2>
             <p className="text-center text-text">
               Search Thousands Of Movies With TMDB API
