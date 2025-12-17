@@ -58,44 +58,26 @@ async function fetchMovieDetails(
   }
 }
 
-async function searchAll(query, setLoading, setResponceError) {
-  setLoading(true);
-  setResponceError("");
-
+async function searchAll(query, page, setResponceError) {
   try {
-    let allResults = [];
-    let page = 1;
-    let totalPages = 5;
+    const res = await fetch(
+      `https://api.themoviedb.org/3/search/multi?include_adult=false&query=${encodeURIComponent(
+        query
+      )}&page=${page}`,
+      options
+    );
 
-    do {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/search/multi?include_adult=false&query=${encodeURIComponent(
-          query
-        )}&page=${page}`,
-        options
-      );
-
-      const data = await res.json();
-
-      if (!data.results) break;
-
-      allResults = allResults.concat(data.results);
-      totalPages = data.total_pages;
-      page++;
-    } while (page <= totalPages);
-
-    return allResults;
+    const data = await res.json();
+    return data;
   } catch (err) {
     setResponceError(err.message);
-    return [];
-  } finally {
-    setLoading(false);
+    return null;
   }
 }
 
 async function fetchRelatedPosts(
-  movieId,
   media_type,
+  movieId,
   setLoading,
   setResponceError
 ) {
@@ -103,10 +85,13 @@ async function fetchRelatedPosts(
   setResponceError("");
   try {
     const res = await fetch(
-      `GET https://api.themoviedb.org/3/${media_type}/${movieId}/recommendations?api_key=${TMDB_API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/${media_type}/${movieId}/recommendations`,
+      options
     );
     const data = await res.json();
-    return data;
+    console.log("related", data);
+
+    return data.results;
   } catch (error) {
     setResponceError(error.message);
   } finally {

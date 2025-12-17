@@ -12,25 +12,47 @@ const Explore = () => {
   const [loading, setLoading] = useState(false);
   const [responceError, setResponceError] = useState("");
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get("search") || "";
 
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    if (initialSearch) {
-      searchAll(initialSearch, setLoading, setResponceError).then((results) => {
-        if (results) {
-          const filtered = results.filter(
-            (item) => item.media_type !== "person" && item.poster_path
-          );
-          console.log(filtered);
+    if (!initialSearch) return;
 
-          setMoviesData(filtered);
-          setCurrentPage(1);
-        }
-      });
+    let isMounted = true;
+    setCurrentPage(1);
+    setMoviesData([]);
+    setLoading(true);
+    setResponceError("");
+
+    async function fetchProgressively() {
+      let page = 1;
+      const MAX_PAGES = 5;
+
+      while (page <= MAX_PAGES && isMounted) {
+        const data = await searchAll(initialSearch, page, setResponceError);
+
+        if (!data?.results) break;
+
+        const filtered = data.results.filter(
+          (item) => item.media_type !== "person" && item.poster_path
+        );
+        setMoviesData((prev) => [...prev, ...filtered]);
+
+        if (page >= data.total_pages) break;
+
+        page++;
+      }
+
+      if (isMounted) setLoading(false);
     }
+
+    fetchProgressively();
+
+    return () => {
+      isMounted = false;
+    };
   }, [initialSearch]);
 
   const itemsPerPage = 12;

@@ -5,9 +5,10 @@ import { fetchMovieDetails, fetchRelatedPosts } from "../api/tmdb";
 import Header from "../components/Header";
 import ShowErrors from "../components/ShowErrors";
 import { Calendar, Clock, Play, Plus, Star } from "lucide-react";
-
+import RelatedPostCarousel from "../components/RelatedPostCarousel";
 const MovieDetails = () => {
   const [getMovieDetails, setGetMovieDetails] = useState(null);
+  const [getRelatedPosts, setGetRelatedPosts] = useState([]);
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [responceError, setResponceError] = useState("");
@@ -15,7 +16,6 @@ const MovieDetails = () => {
   // get type and id from url
   const media_type = searchParams.get("type") || "";
   const movieId = searchParams.get("id") || "";
-  console.log(media_type, movieId);
 
   useEffect(() => {
     let mounted = true;
@@ -37,6 +37,27 @@ const MovieDetails = () => {
     };
   }, [movieId, media_type]);
 
+  useEffect(() => {
+    console.log("real");
+
+    let mounted = true;
+    if (!movieId || !media_type) return;
+
+    fetchRelatedPosts(media_type, movieId, setLoading, setResponceError).then(
+      (results) => {
+        if (!mounted || !results) return;
+
+        // guard: only save if poster_path exists
+        const filtered = results.filter((item) => item.poster_path);
+
+        setGetRelatedPosts(filtered);
+      }
+    );
+    return () => {
+      mounted = false;
+    };
+  }, [movieId, media_type]);
+
   let displayText = "";
   if (loading) {
     displayText = "Loading...";
@@ -47,7 +68,6 @@ const MovieDetails = () => {
   }
 
   let year, month, day;
-
   if (getMovieDetails) {
     const releaseDate =
       media_type === "movie"
@@ -111,12 +131,17 @@ const MovieDetails = () => {
                   )}
                 </div>
                 <div className="flex flex-wrap gap-4 items-center">
-                  <span className="rounded-full py-2 px-4 border-primary/50  bg-secondary-bg border text-primary font-semibold">
-                    Comdey
+                  <span className="rounded-full py-2 px-4 border-primary/50  bg-secondary-bg border text-primary font-semibold capitalize">
+                    {media_type}
                   </span>
-                  <span className="rounded-full py-2 px-4 border-primary/50  bg-secondary-bg border text-primary font-semibold">
-                    Comdey
-                  </span>
+                  {getMovieDetails.genres.map((genre) => (
+                    <span
+                      key={genre.id}
+                      className="rounded-full py-2 px-4 border-primary/50  bg-secondary-bg border text-primary font-semibold"
+                    >
+                      {genre.name}
+                    </span>
+                  ))}
                 </div>
                 <div>
                   <h2 className="text-4xl font-semibold mt-3">Overview</h2>
@@ -135,12 +160,7 @@ const MovieDetails = () => {
               </div>
             </div>
           </section>
-          <section className="py-12 px-6">
-            <div className="container mx-auto flex flex-col gap-3">
-              <h2 className="text-3xl font-semibold">You May Also Like</h2>
-              <div>like</div>
-            </div>
-          </section>
+          <RelatedPostCarousel getRelatedPosts={getRelatedPosts} />
         </>
       )}
     </>
