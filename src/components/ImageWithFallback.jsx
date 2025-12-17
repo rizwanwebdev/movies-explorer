@@ -21,9 +21,10 @@ export default function ImageWithFallback({ poster, alt, className }) {
         src={ERROR_IMG_SRC}
         alt="Error loading image"
         data-original-url={poster}
+        loading="lazy"
       />
     </div>
   ) : (
-    <img src={poster} alt={alt} onError={handleError} />
+    <img src={poster} alt={alt} onError={handleError} loading="lazy" />
   );
 }

@@ -71,6 +71,7 @@ const Explore = () => {
   } else if (currentMovies.length === 0) {
     displayText = "No result found.";
   }
+
   return (
     <>
       <Header initialSearch={initialSearch} />
@@ -85,9 +86,7 @@ const Explore = () => {
               Search Thousands Of Movies With TMDB API
             </p>
             <SearchBar
-              className={
-                "md:min-w-[500px] lg:min-w-[700px] border  py-4 hover:border border-transparent hover:border-primary"
-              }
+              className={"md:min-w-[500px] lg:min-w-[700px]   py-4 "}
               initialSearch={initialSearch}
             />
           </div>

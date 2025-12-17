@@ -1,6 +1,7 @@
 import SearchBar from "./SearchBar";
-import { Search, Film } from "lucide-react";
+import { Film } from "lucide-react";
 import { NavLink } from "react-router-dom";
+
 const Header = ({ initialSearch }) => {
   return (
     <>
@@ -21,8 +22,10 @@ const Header = ({ initialSearch }) => {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `font-semibold ${
-                        isActive ? "text-hover-color" : "text-primary-text"
+                      `font-semibold transition-colors ${
+                        isActive
+                          ? "text-accent"
+                          : "text-primary-text hover:text-primary"
                       }`
                     }
                   >

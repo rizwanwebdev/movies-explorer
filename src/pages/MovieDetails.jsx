@@ -67,18 +67,6 @@ const MovieDetails = () => {
     displayText = "No result found.";
   }
 
-  let year, month, day;
-  if (getMovieDetails) {
-    const releaseDate =
-      media_type === "movie"
-        ? getMovieDetails.release_date
-        : getMovieDetails.first_air_date;
-
-    if (releaseDate) {
-      [year, month, day] = releaseDate.split("-");
-    }
-  }
-
   return (
     <>
       <Header />
@@ -122,7 +110,11 @@ const MovieDetails = () => {
                   </div>
                   <div className="text-text/50 ml-2 flex gap-1.5">
                     <Calendar />
-                    {year}
+
+                    {(getMovieDetails.media_type === "movie"
+                      ? getMovieDetails.release_date
+                      : getMovieDetails.first_air_date
+                    )?.slice(0, 4)}
                   </div>
                   {media_type === "movie" && (
                     <div className="text-text/50 ml-2 flex gap-1.5">

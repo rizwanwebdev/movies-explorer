@@ -28,9 +28,10 @@ const MovieCards = ({ currentMovies }) => {
                     {item.media_type === "movie" ? item.title : item.name}
                   </h4>
                   <p className="text-sm text-text/60">
-                    {item.media_type === "movie"
+                    {(item.media_type === "movie"
                       ? item.release_date
-                      : item.first_air_date}
+                      : item.first_air_date
+                    )?.slice(0, 4)}
                   </p>
                   <p className="text-sm text-text/60">{item.media_type}</p>
                 </div>

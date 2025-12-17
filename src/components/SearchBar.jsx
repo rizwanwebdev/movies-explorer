@@ -19,7 +19,7 @@ const SearchBar = ({ className, initialSearch }) => {
   return (
     <>
       <div
-        className={`rounded-4xl px-5 py-3 text-text bg-secondary-bg min-w-[300px] transition-colors overflow-hidden ${
+        className={`rounded-4xl px-5 py-3 text-text bg-secondary-bg min-w-[300px] transition-colors overflow-hidden border-2 hover:border-primary/80 border-transparent  focus-within:border-primary ${
           className ? className : ""
         }`}
       >

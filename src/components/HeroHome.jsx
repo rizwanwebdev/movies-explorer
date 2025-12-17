@@ -20,11 +20,7 @@ const HeroHome = () => {
               </h1>
               <span>Search, explore and dive into a universe of films</span>
 
-              <SearchBar
-                className={
-                  "w-full border-2  py-4 hover:border-2 border-transparent hover:border-primary"
-                }
-              />
+              <SearchBar className={"w-full border-2  py-4 "} />
             </div>
           </div>
         </div>
