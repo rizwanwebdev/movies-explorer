@@ -9,7 +9,8 @@ const Header = ({ initialSearch }) => {
         <div className="container mx-auto flex justify-between items-center py-2">
           <NavLink to="/">
             <div className="text-2xl font-semibold text-tPrimary cursor-pointer flex flex-row items-center gap-2">
-              <Film className="text-primary" /> Movies Explorer
+              <Film className="text-primary" />
+              Films Explore
             </div>
           </NavLink>
           <nav className="hidden lg:block">
