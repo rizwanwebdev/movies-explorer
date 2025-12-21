@@ -60,7 +60,6 @@ Contributions are welcome! If you'd like to contribute to the project, please fo
 The Movie Database Application is licensed under the MIT License.
 
 ## 📬 Contact
-For any questions or concerns, please contact us at [your-email@example.com](mailto:your-email@example.com).
+For any questions or concerns, please contact us.
 
-## 💖 Thanks Message
-We hope you enjoy using the Movie Database Application! This is written by [readme.ai](https://readme-generator-phi.vercel.app/).
+
