@@ -2,7 +2,7 @@
 
 The Movie Database Application is a web-based platform that allows users to browse and explore movies, including their details, reviews, and related posts. The application is built using React, Vite, and Tailwind CSS, and it utilizes the TMDB API to fetch movie data. The project aims to provide a user-friendly and interactive interface for movie enthusiasts to discover new movies and stay up-to-date with the latest releases.
 
-🔴 Live Demo:[Films-Explorer.netlify.app](https://films-explorer.netlify.app/)
+🔴 Live Demo: [Films-Explorer.netlify.app](https://films-explorer.netlify.app/)
 
 ## 🚀 Features
 
