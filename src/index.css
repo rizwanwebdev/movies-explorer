@@ -26,7 +26,9 @@ body {
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px var(--color-secondary-bg) inset !important; /* your dark bg */
-  -webkit-text-fill-color: var(--color-text) !important; /* text color 
+  -webkit-text-fill-color: var(
+    --color-text
+  ) !important; /* text color important 
   */
   caret-color: var(--color-text) !important;
 }
