@@ -1,16 +1,15 @@
 import SearchBar from "./SearchBar";
 import { Film } from "lucide-react";
 import { NavLink } from "react-router-dom";
-
+import LogoMoviesMesh from "../images/moviesmesh.png";
 const Header = ({ initialSearch }) => {
   return (
     <>
       <header className="px-6 sticky">
         <div className="container mx-auto flex justify-between items-center py-2">
           <NavLink to="/">
-            <div className="text-2xl font-semibold text-tPrimary cursor-pointer flex flex-row items-center gap-2">
-              <Film className="text-primary" />
-              Films Explore
+            <div className="text-2xl font-semibold text-tPrimary cursor-pointer flex flex-row items-center gap-2 max-w-18">
+              <img src={LogoMoviesMesh} alt="Movies Mesh Logo" />
             </div>
           </NavLink>
           <nav className="hidden lg:block">
