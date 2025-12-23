@@ -25,20 +25,20 @@ body {
 }
 
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important; /* your dark bg */
+  -webkit-box-shadow: 0 0 0 1000px var(--color-secondary-bg) inset !important; /* your dark bg */
   -webkit-text-fill-color: var(--color-text) !important; /* text color 
   */
-  caret-color: #ffffff !important;
+  caret-color: var(--color-text) !important;
 }
 
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  caret-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--color-secondary-bg) inset !important;
+  -webkit-text-fill-color: var(--color-text) !important;
+  caret-color: var(--color-text) !important;
 }
 
 input:-webkit-autofill:hover {
-  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--color-secondary-bg) inset !important;
+  -webkit-text-fill-color: var(--color-text) !important;
   caret-color: #ffffff !important;
 }
